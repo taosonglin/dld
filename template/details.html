@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>基金详情</title>
+    <link rel="shortcut icon" href="{% static '/favico.ico' %}"/>
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-table.min.css' %}">
+    <script src="{% static 'js/echarts.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-table.min.js' %}"></script>
+
+</head>
+<body style="padding:5px;" class="usermain">
+
+<div class="userinfo">
+    <div><img src="{% static '/img/dldicon.jpg' %}" class="icon"/></div>
+    Deep Lens Fund
+    <div class="textinfo">
+        <a href="exit/">
+            <button class="button">退出登录</button>
+        </a>
+    </div>
+    <div class="textinfo">hello,{{ user }}</div>
+</div>
+<div class="box_1">
+    <div class="div1">
+        <span>Deep Lens All Pure Alpha Fund</span>
+    </div>
+    <div class="div2">
+        <table class="table_2">
+            <th>费率<br>0.2%<br>2019年10月31日</th>
+            <th>总资产<br>{{total}}<br>2019年10月31日</th>
+            <th>净值<br>1.25<br>2019年10月31日</th>
+            <th>今年来回报率<br>10%<br>2019年10月31日</th>
+        </table>
+    </div>
+</div>
+
+
+<div class="container" style="padding-top:2%;width:90%">
+    <ul class="nav nav-tabs ">
+        <li class="active"><a href="#profile" data-toggle="tab">基本资料</a></li>
+        <li><a href="#reports" data-toggle="tab">基金表现</a></li>
+        <li><a href="#compose" data-toggle="tab">基金组合</a></li>
+        <li><a href="#analysis" data-toggle="tab">归因分析</a></li>
+        <li><a href="#cost" data-toggle="tab">费用</a></li>
+        <li><a href="#bonus" data-toggle="tab">分红配送</a></li>
+        <li><a href="#files" data-toggle="tab">基金文档</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade active" id="profile">
+            <p> {{ profile }}</p>
+        </div>
+        <div class="tab-pane" id="reports">
+            {#                            盈利能力#}
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="width: 100%"><h3 class="panel-title">基金表现概况</h3></div>
+
+                <div class="panel-body" style="width:100%">
+                    <div class="container" style="width:100%">
+                        <div class="container pull-left " style="margin-top:1%" id="基金表现概况container"><table id="基金表现概况" ></table></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="width: 100%"><h3 class="panel-title">盈利能力-回报率</h3></div>
+
+                <div class="panel-body" style="width:100%">
+                    <div class="container" style="width:100%">
+                        <div class="container pull-left " style="margin-top:1%" id="回报率container"><table id="回报率" ></table></div>
+                        <div id="回报率-日级别" class="container pull-left" style="margin-top:1%"></div>
+                        <div id="回报率-周级别" class="container pull-left" style="margin-top:1%"></div>
+                        <div id="回报率-月级别" class="container pull-left" style="margin-top:1%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="width: 100%"><h3 class="panel-title">盈利能力-Jenson指数(Jenson Alpha)&M2</h3></div>
+
+                <div class="panel-body" style="width:100%">
+                    <div class="container" style="width:100%">
+                        <div class="container pull-left " style="margin-top:1%" id="Jenson周级别container"><table id="Jenson周级别" ></table></div>
+                        <div class="container pull-left " style="margin-top:1%" id="Jenson月级别container"><table id="Jenson月级别" ></table></div>
+                        <div class="container pull-left " style="margin-top:1%" id="Jenson季度级别container"><table id="Jenson季度级别" ></table></div>
+                    </div>
+                </div>
+
+            </div>
+            {#                            抗风险能力#}
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="width: 100%"><h3 class="panel-title">抗风险能力</h3></div>
+
+                <div class="panel-body" style="width:100%">
+
+                    <div class="container" style="width:100%">
+                        <div class="container pull-left " style="margin-top:1%" id="抗风险能力周级别container"><table id="抗风险能力周级别" ></table></div>
+                        <div class="container pull-left " style="margin-top:1%" id="抗风险能力月级别container"><table id="抗风险能力月级别" ></table></div>
+                        <div class="container pull-left " style="margin-top:1%" id="抗风险能力季度级别container"><table id="抗风险能力季度级别" ></table></div>
+                    </div>
+
+                </div>
+            </div>
+            {#                            风险调整后指标#}
+            <div class="panel panel-primary">
+
+                <div class="panel-heading" style="width: 100%"><h3 class="panel-title">风险调整后指标</h3></div>
+
+                <div class="panel-body" style="width:100%">
+                    <div class="container" style="width:100%">
+                        <div class="container pull-left " style="margin-top:1%" id="风险调整后指标周级别container"><table id="风险调整后指标周级别" ></table></div>
+                        <div class="container pull-left " style="margin-top:1%" id="风险调整后指标月级别container"><table id="风险调整后指标月级别" ></table></div>
+                        <div class="container pull-left " style="margin-top:1%" id="风险调整后指标季度级别container"><table id="风险调整后指标季度级别" ></table></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="compose">
+            <p>{{ compose }}</p>
+        </div>
+        <div class="tab-pane fade" id="analysis">
+            <p>{{ analysis }}</p>
+        </div>
+        <div class="tab-pane fade" id="cost">
+            <p>{{ cost }}</p>
+        </div>
+        <div class="tab-pane fade" id="bonus">
+            <p>{{ bonus }}</p>
+        </div>
+        <div class="tab-pane fade" id="files">
+            <p>{{ files }}</p>
+        </div>
+    </div>
+</div>
+<style>
+    .table .thead-light th {
+  color: #495057;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+</style>
+
+<script src="/static/js/details.js"></script>
+</body>
+</html>

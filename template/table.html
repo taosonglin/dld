@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>产品链接</title>
+</head>
+<body>
+
+<table border="">
+    <caption>产品</caption>
+<tr>
+    <th>产品名称</th>
+    <th>投资顾问</th>
+    <th>投资经理</th>
+    <th>管理人</th>
+    <th>成立日期</th>
+    <th>角色</th>
+    <th>净值日期</th>
+    <th>最新净值</th>
+    <th>最大回撤</th>
+    <th>负责人</th>
+    <th>监控状态</th>
+    <th>风控状态</th>
+    <th>操作</th>
+</tr>
+{% for values in data%}
+    <tr>
+{% for item in values%}
+<td>{{item}}</td>
+{% endfor %}
+    </tr>>
+{% endfor %}
+
+</table>
+</body>
+</html>

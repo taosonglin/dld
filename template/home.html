@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/theme/{{ blog.theme }}.css">
+</head>
+<body>
+<div>{{ blog.title }}--{{ blog.user.nickname }}</div>
+<div class="c1">
+    <h3>文章分类</h3>
+    <ul>
+        {% for category in category_list %}
+            <li><a href="{{ category.category_id }}">{{ category.category__title }}({{ category.ct }})</a></li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="c2">
+    <h3>标签分类</h3>
+    <ul>
+        {% for tag in tag_list %}
+            <li><a href="{{ tag.tag_id }}">{{ tag.tag__title }}({{ tag.ct }})</a></li>
+        {% endfor %}
+ 
+    </ul>
+</div>
+ 
+<div>
+    <h3>时间标签</h3>
+    <ul>
+        {% for date in date_list %}
+        <li><a href="{{ date.ctime }}">{{ date.ctime }}({{ date.ct }})</a></li>
+        {% endfor %}
+ 
+    </ul>
+</div>
+<div>
+    {% for article in article_list %}
+        <div>
+            <a href="{{ article.title }}"></a>
+            <div>{{ article.summary }}</div>
+        </div>
+ 
+    {% endfor %}
+ 
+</div>
+</body>
